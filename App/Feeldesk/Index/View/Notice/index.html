@@ -1,0 +1,56 @@
+<extend name="Public:common"/>
+
+<block name="crumb1">公告管理</block>
+
+<block name="content">
+    <div class="feeldesk-list">
+        <div class="feeldesk-list-header clearfix">
+            <div class="header-left">
+                <a href="{:U('Notice/create')}" class="createBtn" title="创建公告">
+                    <i class="iconfont icon-xinzeng"></i>创建公告
+                </a>
+            </div>
+            <div class="header-right">
+                <form action="" class="layui-form ml15 fts14">
+                    <span>筛选 </span>
+                    <div class="layui-input-inline" style="width: 260px;"></div>
+                </form>
+            </div>
+        </div>
+
+        <div class="feeldesk-list-content">
+            <div class="feeldesk-list-main">
+                <table class="layui-table" lay-skin="nob">
+                    <thead>
+                        <tr>
+                            <th>标题</th>
+                            <th>发布日期</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <empty name="notices">
+                            <tr class="nodata center"><td colspan="3">无数据</td></tr>
+                        <else />
+                            <volist name="notices" id="notice">
+                                <tr>
+                                    <td>{$notice.title}</td>
+                                    <td>{$notice.created_at|date='Y-m-d', ###}</td>
+                                    <td class="feeldesk-list-operate">
+                                        <a href="{:U('Notice/edit', ['id' => $notice['id']])}" title="编辑">编辑</a>
+                                        <a href="{:U('Notice/delete', ['id' => $notice['id']])}" title="删除" onclick="return confirm('确认删除？');">删除</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                        </empty>
+                    </tbody>
+                </table>
+            </div>
+            <notempty name="page">
+                <div class="feeldesk-list-footer">
+                    <div class="user-page">{$page}</div>
+                </div>
+            </notempty>
+        </div>
+    </div>
+</block>

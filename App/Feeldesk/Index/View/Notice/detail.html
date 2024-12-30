@@ -1,0 +1,71 @@
+<include file="Public/header" />
+
+<link rel="stylesheet" type="text/css" href="INDEX_PUBLIC_CSS/ticket-detail.css?v=1"/>
+
+<link rel="stylesheet" href="__PUBLIC__/js/layui/extends/dtree/dtree.css">
+
+<link rel="stylesheet" href="__PUBLIC__/js/layui/extends/dtree/font/dtreefont.css">
+<style type="text/css">
+
+    ::-webkit-scrollbar{width:5px;height:5px;}
+    ::-webkit-scrollbar-button:vertical{display:none;}
+    ::-webkit-scrollbar-track:vertical{background-color:black;}
+    ::-webkit-scrollbar-track-piece{background-color:#F5F5F5;}
+    ::-webkit-scrollbar-thumb:vertical{margin-right:10px; background-color:#cecece;border-radius: 4px;}
+    ::-webkit-scrollbar-thumb:vertical:hover{background-color:#aaa;}
+    ::-webkit-scrollbar-corner:vertical{background-color:#cecece;}
+    ::-webkit-scrollbar-resizer:vertical{background-color:#cecece;}
+
+</style>
+<div class="library-problem-detail">
+
+    <div class="detail-content">
+
+        <div class="detail-sidebar sidebar"><i class="iconfont icon-right"></i></div>
+
+        <!-- 标题栏 -->
+        <div class="detail-header clearfix">
+
+            <span class="problem-title">{$notice.title}</span>
+
+            <div class="sub-title">
+
+                <span >创建时间：{$notice.update_at}</span>
+
+                <span></span>
+
+            </div>
+
+        </div>
+
+        <div class="detail-main">
+
+            <!--详细内容-->
+            <div class="detail-content">
+
+                <div class="problem-content black6" id="problemContent" >{$notice.content|raw}</div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<script type="text/javascript">
+
+$('body').find('#closeTicketDetail').click(function()
+{
+    window.parent.postMessage('closeDetail','*');
+});
+
+window.addEventListener('message', function(e)
+{
+    if(e.data)
+    {
+        window.formCustomer = 1;
+    }
+}, false)
+
+</script>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>FeelDesk 工单管理系统</title>
+    <link rel="stylesheet" href="/Public/css/common.css" />
+    <link rel="stylesheet" href="/Public/js/layui/css/layui.css" />
+    <link rel="stylesheet prefetch" href="/Public/js/photoswipe/photoswipe.css">
+    <link rel="stylesheet prefetch" href="/Public/js/photoswipe/default-skin/default-skin.css">
+    <link rel="stylesheet" href="/Public/mobile/css/mobile-terminal.css" />
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_732216_5nqz8t6p1mv.css" />
+    <link rel="stylesheet" href="/Public/js/mobileSelect/mobileSelect.css">
+    <link rel="stylesheet" href="/Public/js/mobile-date/mobile-date.css">
+    <link rel="stylesheet" href="/Public/js/jeDate/skin/jedate.css">
+    <script type="text/javascript">
+        const moduleName = "Mobile";
+    </script>
+    <script type="text/javascript" src="/Public/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/Public/js/cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/Public/js/lang/zh-cn.js"></script>
+    <script type="text/javascript" src="/Public/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/Public/js/layui/layui.js"></script>
+    <script type="text/javascript" src="/Public/js/uni.webview.1.5.2.js"></script>
+    <script type="text/javascript" src="/Public/js/WeChat/wechatglobal.js"></script>
+    <script type="text/javascript" src="/Public/js/WeChat/wechatupload.js"></script>
+    <script type="text/javascript" src="/Public/js/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/Public/js/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script type="text/javascript" src="/Public/js/WeChat/iscroll.js"></script>
+    <script type="text/javascript" src="/Public/js/mobile-date/mobile-date.js"></script>
+    <script type="text/javascript" src="/Public/js/jeDate/src/jedate.js"></script>
+    <script type="text/javascript" src="/Public/js/feeldesk-slide.js"></script>
+    <script type="text/javascript" src='/Public/js/socket.io.js'></script>
+    <script type="text/javascript">
+        var socketUrl = "dev.feeldesk.cn:8500";
+        document.addEventListener('UniAppJSBridgeReady', function() {
+            uni.getEnv(function(res) {
+                if (res.plus) //res.h5
+                {
+                    isApp = true;
+                    if ($('#login-trigger').length > 0) {
+                        document.querySelector('#login-trigger').addEventListener('click', function(e) {
+                            const target = e.target;
+                            uni.postMessage({
+                                data: {
+                                    uid: $(target).data('value'),
+                                    cid: $(target).data('c-value')
+                                }
+                            })
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        body {
+            background-color: #fafafa
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="feeldesk">
+    <header>
+        <div class="header-tab header-one-tab fts0">
+            <div class="tab tab-this">
+                <a href="http://47.122.65.170/u-home">工单</a>
+            </div>
+        </div>
+    </header>
+    <div class="feeldesk-main">
+        <div class="index-analysis">
+            <div id="container" class="container"></div>
+        </div>
+        <div class="feeldesk-ticket-item">
+			<ul id="ticketPannel">
+				<volist name="data" id="ticket">
+				<li>
+											<a href="{$ticket.action}?mobile=1">
+					<i class="iconfont {$ticket.icon}"></i> 
+						<span>{$ticket.name}</span>
+						<span class="fr">{$ticket.number}</span>
+					</a>
+				</li>
+			</volist>
+			</ul>
+        </div>
+    </div>
+    <div class="buoy-shade hidden"></div>
+    <div class="feeldesk-buoy">
+        <div class="operate-buoy hidden">
+            <a href="/Ticket/template?mobile=1" class="ticket-buoy"><span>发布工单</span><img src="/Public/mobile/img/ticket-buoy.png" alt="" width="100%"></a>
+        </div>
+        <a href="javascript:" class="create-buoy"><img src="/Public/mobile/img/feeldesk-buoy.png" alt="" width="100%" class="transfer0"></a>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+            $('.create-buoy').unbind('click').on('click', function() {
+                var createBuoy = $(this).find('img');
+                createBuoy.toggleClass('transfer45').toggleClass('transfer0');
+                $('.operate-buoy').fadeToggle('300');
+                $('.buoy-shade').fadeToggle('fast').unbind('click').on('click', function() {
+                    $('.operate-buoy').fadeOut('fast');
+                    $(this).fadeOut('fast');
+                    createBuoy.toggleClass('transfer45').toggleClass('transfer0');
+                });
+            })
+        })
+    </script>
+</div>
+<div class="feeldesk-footer">
+    <ul class="footer-nav">
+        <li>
+            <a href="http://47.122.65.170/m-home?mobile=1" class="active">
+                <i class="iconfont icon-home"></i>
+                <p>首页</p>
+            </a>
+        </li>
+        <li>
+            <a href="http://47.122.65.170/Index/message/getMessage/types/unread?mobile=1" class="">
+                <i class="iconfont icon-notify"></i>
+                <p>通知</p>
+            </a>
+        </li>
+        <li>
+            <a href="/mobile/allTicket?mobile=1" class="">
+                <i class="iconfont icon-my"></i>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(".transfer").on('click', function() {
+        $(this).find('i').toggleClass('icon-tianjia2');
+        $(".transfer-nav").slideToggle('fast');
+        $("#ticketPannel").toggleClass('pb120');
+    })
+</script>
+<script type="text/javascript">
+    var releaseNumber = '2';
+    var handleNumber = '0';
+    var completeNumber = '0';
+</script>
+<script type="text/javascript" src="/Public/mobile/js/analysis.js"></script>
+</body>
+</html>

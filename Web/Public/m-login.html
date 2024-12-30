@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="">
+
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <!-- 移动端视口说明 -->
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+		<title>FeelDesk 工单管理系统</title>
+
+		<link rel="stylesheet" href="/Public/css/common.css"/>
+
+		<link rel="stylesheet" href="/Public/js/layui/css/layui.css"/>
+
+        <link rel="stylesheet prefetch" href="/Public/js/photoswipe/photoswipe.css">
+
+        <link rel="stylesheet prefetch" href="/Public/js/photoswipe/default-skin/default-skin.css">
+
+        <link rel="stylesheet" href="/Public/mobile/css/mobile-terminal.css"/>
+
+        <link rel="stylesheet" href="https://at.alicdn.com/t/font_732216_5nqz8t6p1mv.css"/>
+
+		<link rel="stylesheet" href="/Public/js/mobileSelect/mobileSelect.css">
+
+		<link rel="stylesheet" href="/Public/js/mobile-date/mobile-date.css">
+
+		
+		<link rel="stylesheet" href="/Public/js/jeDate/skin/jedate.css">
+
+		<script type="text/javascript" >
+
+			const moduleName = "Mobile";
+
+		</script>
+
+		<script type="text/javascript" src="/Public/js/jquery-1.9.1.min.js"></script>
+
+		<script type="text/javascript" src="/Public/js/cookie/jquery.cookie.js"></script>
+
+		<script type="text/javascript" src="/Public/js/lang/zh-cn.js"></script>
+
+		<script type="text/javascript" src="/Public/js/layer/layer.js"></script>
+
+		<script type="text/javascript" src="/Public/js/layui/layui.js"></script>
+
+		<!-- uni 的 SDK -->
+		<script type="text/javascript" src="/Public/js/uni.webview.1.5.2.js"></script>
+
+		<script type="text/javascript" src="/Public/js/WeChat/wechatglobal.js"></script>
+
+		<script type="text/javascript" src="/Public/js/WeChat/wechatupload.js"></script>
+
+		<script type="text/javascript" src="/Public/js/photoswipe/photoswipe.min.js"></script>
+
+		<script type="text/javascript" src="/Public/js/photoswipe/photoswipe-ui-default.min.js"></script>
+
+        <script type="text/javascript" src="/Public/js/WeChat/iscroll.js"></script>
+
+		<script type="text/javascript" src="/Public/js/mobile-date/mobile-date.js"></script>
+
+		<script type="text/javascript" src="/Public/js/jeDate/src/jedate.js"></script>
+
+		<script type="text/javascript" src="/Public/js/feeldesk-slide.js"></script>
+
+		<script type="text/javascript" src='/Public/js/socket.io.js'></script>
+
+		<script type="text/javascript">
+
+			var socketUrl = "dev.feeldesk.cn:8500";
+
+			document.addEventListener('UniAppJSBridgeReady', function()
+			{
+				uni.getEnv(function(res)
+				{
+					if (res.plus)//res.h5
+					{
+						isApp = true;
+
+						if($('#login-trigger').length > 0)
+						{
+							document.querySelector('#login-trigger').addEventListener('click', function(e)
+							{
+								const target = e.target;
+
+								uni.postMessage({
+									data: {
+										uid: $(target).data('value'),
+										cid: $(target).data('c-value')
+									}
+								})
+							});
+						}
+					}
+				});
+			});
+
+		</script>
+
+		<style type="text/css">
+
+            body{background-color: #fafafa}
+
+        </style>
+
+	</head>
+
+    <body>
+
+
+
+<div class="user-wrapper">
+
+    <div class="login-header">
+
+        <div class="header-top"></div>
+
+        <div class="header-logo"><!--<img src="/Public/img/mobile-login-logo.png" alt="">--></div>
+
+    </div>
+
+    <div class="user-form-main">
+
+        <form action="" id="login-form">
+
+            <div class="user-form-item" id="username">
+
+                <i class="iconfont icon-account"></i>
+
+                <input type="text" name="data[username]" placeholder="手机号/邮箱" autocomplete="off">
+
+            </div>
+
+            <div class="user-form-item">
+
+                <i class="iconfont icon-password"></i>
+
+                <input type="password" name="data[password]" placeholder="请输入密码" autocomplete="off">
+
+            </div>
+
+            <div class="user-form-item slide-item"><div class="slide-verify" id="slide-verify"></div></div>
+
+            <div class="user-form-item login-item"><a href="javascript:" class="submit-btn" onclick="login('mobile')">登录</a></div>
+
+            <div class="hidden" id="login-trigger" data-value=""></div>
+
+            <div class="user-form-item form-go-item"><a href="/m-reg">立即注册</a></div>
+
+        </form>
+
+    </div>
+
+</div>

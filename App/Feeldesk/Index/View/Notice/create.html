@@ -1,0 +1,59 @@
+<extend name="Public:window"/>
+
+<block name="window-form">
+
+    <form class="layui-form" action="{:U('Notice/add')}" method="post">
+
+        <div class="form-item">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">公告标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" value="" class="layui-input"  placeholder="请输入公告标题" />
+                </div>
+            </div>
+
+
+            <!-- 公告内容 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">公告内容</label>
+                <div class="layui-input-inline">
+                    <!-- 使用富文本编辑器 -->
+                    <textarea name="content" id="fastEditor" class="layui-textarea" ></textarea>
+                </div>
+            </div>
+
+ 
+
+        </div>
+
+        <div class="form-submit">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">发布公告</button>
+                    <a href="javascript:" class="layui-btn layui-btn-normal cancel-btn" id="cancel-form">取消编辑</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</block>
+
+
+
+
+<block name="footerScripts">
+    <script>
+        layui.use(['form'], function() {
+            var form = layui.form;
+
+            // 表单提交事件处理
+            form.on('submit(saveForm)', function(data) {
+                // 这里可以进行进一步的表单验证或处理
+                console.log(data.field);  // 可以在控制台查看提交的数据
+                return true;  // 确保返回true以提交表单
+            });
+        });
+    </script>
+</block>

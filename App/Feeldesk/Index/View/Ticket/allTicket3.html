@@ -1,0 +1,553 @@
+<extend name="Public:common" />
+
+<block name="crumb1">{:L('TICKET_MANAGER')}</block>
+<block name="content">
+
+    <div class="ticket-item">
+        <!-- <form action="javascript:;" method="get" id="searchFilter" class="layui-form mb-4">
+            <div class="filter-item">
+                <span class="filter-name">选择年份</span>
+                <div class="filter-option">
+                    <input type="radio" name="year" value="2024" title="2024" id="year2024">
+                    <input type="radio" name="year" value="2025" title="2025" id="year2025">
+                    <input type="radio" name="year" value="2026" title="2026" id="year2026">
+                </div>
+            </div>
+
+            <div class="filter-item">
+                <span class="filter-name">选择月份</span>
+                <div class="filter-option">
+                    <input type="radio" name="month" value="01" title="1月" id="month01">
+                    <input type="radio" name="month" value="02" title="2月" id="month02">
+                    <input type="radio" name="month" value="03" title="3月" id="month03">
+                    <input type="radio" name="month" value="04" title="4月" id="month04">
+                    <input type="radio" name="month" value="05" title="5月" id="month05">
+                    <input type="radio" name="month" value="06" title="6月" id="month06">
+                    <input type="radio" name="month" value="07" title="7月" id="month07">
+                    <input type="radio" name="month" value="08" title="8月" id="month08">
+                    <input type="radio" name="month" value="09" title="9月" id="month09">
+                    <input type="radio" name="month" value="10" title="10月" id="month10">
+                    <input type="radio" name="month" value="11" title="11月" id="month11">
+                    <input type="radio" name="month" value="12" title="12月" id="month12">
+                </div>
+            </div>
+        </form> -->
+        <form action="javascript:;" method="get" id="searchFilter" class="layui-form mb-4">
+            <div class="filter-item">
+                <span class="filter-name">选择年份</span>
+                <div class="filter-option">
+                    <input type="radio" name="year" value="2024" title="2024" id="year2024">
+                    <input type="radio" name="year" value="2025" title="2025" id="year2025">
+                    <input type="radio" name="year" value="2026" title="2026" id="year2026">
+                    <!-- 根据需要添加更多年份选项 -->
+                </div>
+            </div>
+        </form>
+
+        <h3 class="mb-4">自定义提成率</h3>
+        <form id="commissionRatesForm" class="mb-5">
+            <table class="table table-striped">
+                <thead class="bg-dark text-warning">
+                    <tr>
+                        <th>期刊种类</th>
+                        <th>0-70000</th>
+                        <th>70001-150000</th>
+                        <th>150001-220000</th>
+                        <th>220001-350000</th>
+                        <th>350000以上</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SCI</td>
+                        <td><input type="text" id="SCI_0_70000" name="SCI_0_70000" value="2.5%" placeholder="输入提成率"
+                                class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SCI_70001_150000" name="SCI_70001_150000" value="3.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SCI_150001_220000" name="SCI_150001_220000" value="3.5%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SCI_220001_350000" name="SCI_220001_350000" value="4.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SCI_350000_above" name="SCI_350000_above" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>SCOPUS</td>
+                        <td><input type="text" id="SCOPUS_0_70000" name="SCOPUS_0_70000" value="3.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SCOPUS_70001_150000" name="SCOPUS_70001_150000" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SCOPUS_150001_220000" name="SCOPUS_150001_220000" value="7.5%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SCOPUS_220001_350000" name="SCOPUS_220001_350000" value="10.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SCOPUS_350000_above" name="SCOPUS_350000_above" value="12.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>ESCI</td>
+                        <td><input type="text" id="ESCI_0_70000" name="ESCI_0_70000" value="3.0%" placeholder="输入提成率"
+                                class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="ESCI_70001_150000" name="ESCI_70001_150000" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="ESCI_150001_220000" name="ESCI_150001_220000" value="7.5%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="ESCI_220001_350000" name="ESCI_220001_350000" value="10.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="ESCI_350000_above" name="ESCI_350000_above" value="12.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>SSCI</td>
+                        <td><input type="text" id="SSCI_0_70000" name="SSCI_0_70000" value="2.5%" placeholder="输入提成率"
+                                class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SSCI_70001_150000" name="SSCI_70001_150000" value="3.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SSCI_150001_220000" name="SSCI_150001_220000" value="3.5%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SSCI_220001_350000" name="SSCI_220001_350000" value="4.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="SSCI_350000_above" name="SSCI_350000_above" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>AHCI</td>
+                        <td><input type="text" id="AHCI_0_70000" name="AHCI_0_70000" value="2.5%" placeholder="输入提成率"
+                                class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="AHCI_70001_150000" name="AHCI_70001_150000" value="3.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="AHCI_150001_220000" name="AHCI_150001_220000" value="3.5%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="AHCI_220001_350000" name="AHCI_220001_350000" value="4.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="AHCI_350000_above" name="AHCI_350000_above" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>CA</td>
+                        <td><input type="text" id="CA_0_70000" name="CA_0_70000" value="5.0%" placeholder="输入提成率"
+                                class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="CA_70001_150000" name="CA_70001_150000" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="CA_150001_220000" name="CA_150001_220000" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="CA_220001_350000" name="CA_220001_350000" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="CA_350000_above" name="CA_350000_above" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>EI</td>
+                        <td><input type="text" id="EI_0_70000" name="EI_0_70000" value="2.5%" placeholder="输入提成率"
+                                class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="EI_70001_150000" name="EI_70001_150000" value="3.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="EI_150001_220000" name="EI_150001_220000" value="3.5%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="EI_220001_350000" name="EI_220001_350000" value="4.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="EI_350000_above" name="EI_350000_above" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>普刊</td>
+                        <td><input type="text" id="普刊_0_70000" name="普刊_0_70000" value="5.0%" placeholder="输入提成率"
+                                class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="普刊_70001_150000" name="普刊_70001_150000" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="普刊_150001_220000" name="普刊_150001_220000" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="普刊_220001_350000" name="普刊_220001_350000" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                        <td><input type="text" id="普刊_350000_above" name="普刊_350000_above" value="5.0%"
+                                placeholder="输入提成率" class="form-control" autocomplete="off"></td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+            <button type="submit" style="margin: 0 auto;display: flex;"
+                class="layui-btn layui-btn-normal btn btn-primary">提交</button>
+        </form>
+
+        <h2 class="mt-5">当月订单记录表</h2>
+        <button id="downloadExcel" class="btn btn-success mb-3">下载 Excel</button>
+        <button id="toggleTable" class="btn btn-secondary mb-3">折叠/展开 表格</button>
+        <table id="exportTable" class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <?php if (!empty($tableHeader)): ?>
+                    <?php foreach ($tableHeader as $header): ?>
+                    <th>
+                        <?php echo $header; ?>
+                    </th>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($excelData)): ?>
+                <?php foreach ($excelData as $row): ?>
+                <tr>
+                    <?php foreach ($row as $cell): ?>
+                    <td>
+                        <?php echo $cell; ?>
+                    </td>
+                    <?php endforeach; ?>
+                </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+        <h2 class="mt-5">提成汇总表</h2>
+        <button id="downloadExcels" class="btn btn-success mb-3">下载 Excel</button>
+        <table id="commissionTable" class="table table-bordered table-striped">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th>发布人</th>
+                    <?php foreach ($journalTypesToSummarize as $jt): ?>
+                    <th>
+                        <?php echo htmlspecialchars($jt); ?>
+                    </th>
+                    <?php endforeach; ?>
+                    <th>总提成</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($commissionData)): ?>
+                <?php foreach ($commissionData as $publisher => $journals): ?>
+                <tr <?php if ($publisher==='总计' ) echo 'class="total-row"' ; ?>>
+                    <td>
+                        <?php echo htmlspecialchars($publisher); ?>
+                    </td>
+                    <?php foreach ($journalTypesToSummarize as $jt): ?>
+                    <td>
+                        <?php echo isset($journals[$jt]) ? number_format($journals[$jt], 2) : '0.00'; ?>
+                    </td>
+                    <?php endforeach; ?>
+                    <td>
+                        <?php 
+                            echo isset($journals['总提成']) 
+                                ? number_format($journals['总提成'], 2) 
+                                : '0.00'; 
+                        ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+    <script type="text/javascript">
+        var year = '';
+        layui.use(['form'], function () {
+            var form = layui.form,
+                exportWindow,
+                allChecked,
+                exportOptionCheckedLength = 0,
+                exportOption = $(".export-money ul a");
+            form.on('radio', function (data) {
+                year = $("input[name='year']:checked").val();
+           
+            });
+
+            // 提交提成率表单
+            $('#commissionRatesForm').on('submit', function (e) {
+                event.preventDefault(); // 防止表单默认提交
+                if (!year) {
+            alert('请选择年份');
+            return; // 终止执行
+        }
+                // 获取表单字段
+                let formData = new FormData(this);
+
+                // 创建提成率对象
+                let commissionRates = {
+                    "SCI": {},
+                    "SCOPUS": {},
+                    "ESCI": {},
+                    "SSCI": {},
+                    "AHCI": {},
+                    "CA": {},
+                    "EI": {},
+                    "普刊": {}
+                };
+
+                // 遍历每个输入项，获取名称和值
+                formData.forEach(function (value, key) {
+
+                    let [journalType, range, endRange] = key.split('_'); // 拆分期刊类型和范围
+
+                    let numericValue = parseFloat(value.replace('%', '')) / 100; // 将百分比转化为数字
+                    commissionRates[journalType][endRange] = numericValue; // 将输入值转换为浮动数字
+                });
+
+                console.log(commissionRates); // 打印提成率对象
+                console.log(year)
+                $.get("/Ticket/exportMoney", {
+                    action: "allTicket3",
+                    exportList: [
+                        'ticket_no',
+                        'member_id',
+                        'create_time',
+                        'timeout_period',
+                        'status_id',
+                        {
+                            form: [
+                                { id: 9, name: '期刊类型' },
+                                { id: 29, name: '投稿类型' },
+                                { id: 11, name: '全款' },
+                                { id: 26, name: '多收金额' },
+                                { id: 24, name: '开单地' }
+                            ]
+                        }
+                    ],
+                    commissionRates: commissionRates,  // 传递的提成数据
+                    year:year,
+                }, function (data) {
+                    // console.log('Received Data:', data);  // 打印服务器返回的数据到控制台
+                    if (data.msg === 'success') {
+                        feelDeskAlert("{:L('EXPORT_SUCCESS')}", data);
+
+                        // 关闭弹窗、取消选中导出项
+                        exportOptionCheckedLength = 0;
+
+                        exportOption.removeClass('select-this').nextAll('input').prop('checked', false);
+
+                        layer.close(exportWindow);
+
+                        $("input[lay-filter='exportMoneyAllChoose']").prop('checked', false);
+
+                        form.render();
+                        // window.location.reload();
+                    } else {
+                        feelDeskAlert(data.msg);
+                    }
+                });
+
+            });
+
+            $("#startExportMoney").on('click', function () {
+                var loading = layer.load(2, { offset: '15vw' });
+                // e.preventDefault();  // 防止表单刷新页面
+
+                // 获取表单中的所有数据
+                var commissionRates = {};
+                $(this).find('input[type="text"]').each(function () {
+                    var fieldName = $(this).attr('name');
+                    var value = $(this).val();
+                    commissionRates[fieldName] = parseFloat(value) || 0;
+                });
+
+                $.get("/Ticket/exportMoney", {
+                    action: "allTicket3",
+                    exportList: [
+                        'ticket_no',
+                        'member_id',
+                        'create_time',
+                        'end_time',
+                        {
+                            form: [
+                                { id: 9, name: '期刊类型' },
+                                { id: 29, name: '投稿类型' },
+                                { id: 11, name: '全款' },
+                                { id: 26, name: '多收金额' }
+                            ]
+                        }
+                    ],
+                    commissionRates: commissionRates,  // 传递的提成数据
+                }, function (data) {
+                    // console.log('Received Data:', data);  // 打印服务器返回的数据到控制台
+                    if (data.msg === 'success') {
+                        feelDeskAlert("{:L('EXPORT_SUCCESS')}", data);
+
+                        // 关闭弹窗、取消选中导出项
+                        exportOptionCheckedLength = 0;
+
+                        exportOption.removeClass('select-this').nextAll('input').prop('checked', false);
+
+                        layer.close(exportWindow);
+
+                        $("input[lay-filter='exportMoneyAllChoose']").prop('checked', false);
+
+                        form.render();
+                        // window.location.reload();
+                    } else {
+                        feelDeskAlert(data.msg);
+                    }
+                });
+
+                layer.close(loading);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#exportTable').DataTable({
+                paging: true, // 启用分页功能
+                searching: true, // 启用搜索功能
+                ordering: true, // 启用排序功能
+                responsive: true // 响应式设计
+            });
+        });
+        $(document).ready(function () {
+            $('#commissionTable').DataTable({
+                paging: true, // 启用分页功能
+                searching: true, // 启用搜索功能
+                ordering: true, // 启用排序功能
+                responsive: true // 响应式设计
+            });
+        });
+    </script>
+
+
+    <!-- <script>
+        window.onload = function () {
+            // 获取当前 URL
+            var currentUrl = window.location.href;
+
+            // 检查当前 URL 是否已经有查询参数
+            if (currentUrl.indexOf('?') === -1) {
+                // 如果没有参数，则跳转到目标 URL 并附带默认参数
+                var baseUrl = 'http://47.122.66.77/Ticket/allTicket3';
+                var params = {
+                    view_source: 'list',
+                    show_end_ticket: 'on',
+                    sort: 'desc',
+                    sort_field: 'ticket_id',
+                    keyword: '',
+                    timeId: 'n',
+                    datetime: '2024-11-01 00:00 ~ 2025-01-01 00:00',
+                    status: '9,4,5,6',
+                    template_type_id: '5',
+                    template_id: '5',
+                    publishIds: ''
+                };
+
+                // 将查询参数序列化为 URL 查询字符串
+                var queryString = Object.keys(params).map(function (key) {
+                    return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+                }).join('&');
+
+                // 拼接成完整的 URL
+                var fullUrl = baseUrl + '?' + queryString;
+
+                // 跳转到目标 URL
+                window.location.href = fullUrl;
+            }
+        };
+
+
+    </script> -->
+    <!-- <script type="text/javascript">
+        layui.use(['form'], function () {
+            var form = layui.form;
+            console.log(123);
+            // 监听年份的选择
+            form.on('radio(year)', function (data) { // 使用 'radio(year)' 以确保只监听年份的变化
+                var year = $("input[name='year']:checked").val();
+                console.log(year);
+                if (year) {
+                    // 计算开始日期和结束日期
+                    var startDate = year + '-01-01 00:00:00';
+                    var endYear = parseInt(year) + 1;
+                    var endDate = endYear + '-01-01 00:00:00';
+    
+                    // 生成URL并跳转
+                    var url = 'http://47.122.66.77/Ticket/allTicket3?view_source=list&show_end_ticket=on&sort=desc&sort_field=ticket_id&keyword=&timeId=n&datetime=' + encodeURIComponent(startDate + ' ~ ' + endDate) + '&status=9,4,5,6&template_type_id=5&template_id=5&publishIds=';
+    
+                    // 跳转到新的URL
+                    window.location.href = url;
+                }
+            });
+        });
+    </script> -->
+
+    <!-- <script type="text/javascript">
+        layui.use(['form'], function () {
+            var form = layui.form;
+
+            // 获取每个月的最后一天
+            function getLastDayOfMonth(year, month) {
+                // 月份是从0开始的，因此2月应该是1
+                return new Date(year, month, 0).getDate();
+            }
+
+            // 监听年份和月份的选择
+            form.on('radio', function (data) {
+                var year = $("input[name='year']:checked").val();
+                var month = $("input[name='month']:checked").val();
+
+                if (year && month) {
+                    // 获取每个月的最后一天
+                    var lastDay = getLastDayOfMonth(year, month);
+
+                    // 拼接日期范围
+                    var startDate = year + '-' + month + '-01 00:00:00';
+                    var endDate = year + '-' + month + '-' + lastDay + ' 23:59:59';
+
+                    // 生成URL并跳转
+                    var url = 'http://47.122.66.77/Ticket/allTicket3?view_source=list&show_end_ticket=on&sort=desc&sort_field=ticket_id&keyword=&timeId=n&datetime=' + encodeURIComponent(startDate + ' ~ ' + endDate) + '&status=1,2,3,8,9,4,5,6&template_type_id=5&template_id=5&publishIds=';
+
+                    // 跳转到新的URL
+                    window.location.href = url;
+                }
+            });
+        });
+    </script> -->
+    <script>
+        document.getElementById('downloadExcel').addEventListener('click', function () {
+            // 获取 DataTable 实例
+            var table = $('#exportTable').DataTable();
+
+            // 禁用分页和搜索功能，获取完整数据
+            table.page.len(-1).draw();  // `-1` 会让表格展示所有数据，不分页
+            table.search('').draw();    // 清除搜索条件，获取所有数据
+
+            // 使用 SheetJS 将表格数据转换为工作簿
+            var wb = XLSX.utils.table_to_book(document.getElementById('exportTable'), { sheet: "Sheet1" });
+
+            // 创建一个 Excel 文件并下载
+            XLSX.writeFile(wb, 'allOrder_data.xlsx');
+
+            // 下载完后，恢复分页和搜索功能
+            table.page.len(10).draw();  // 恢复原来的分页长度（例如每页显示 10 条数据）
+        });
+
+        document.getElementById('downloadExcels').addEventListener('click', function () {
+            // 获取 DataTable 实例
+            var table = $('#commissionTable').DataTable();
+
+            // 禁用分页和搜索功能，获取完整数据
+            table.page.len(-1).draw();  // `-1` 会让表格展示所有数据，不分页
+            table.search('').draw();    // 清除搜索条件，获取所有数据
+
+            // 使用 SheetJS 将表格数据转换为工作簿
+            var wb = XLSX.utils.table_to_book(document.getElementById('commissionTable'), { sheet: "Sheet1" });
+
+            // 创建一个 Excel 文件并下载
+            XLSX.writeFile(wb, 'commission_data.xlsx');
+
+            // 下载完后，恢复分页和搜索功能
+            table.page.len(10).draw();  // 恢复原来的分页长度（例如每页显示 10 条数据）
+        });
+        document.getElementById('toggleTable').addEventListener('click', function () {
+            var table = document.getElementById('exportTable');
+
+            // 检查表格当前是否可见
+            if (table.style.display === "none") {
+                table.style.display = "table"; // 展开表格
+            } else {
+                table.style.display = "none"; // 折叠表格
+            }
+        });
+    </script>
+
+    <script src='INDEX_PUBLIC_JS/ticket.js'></script>
+
+</block>

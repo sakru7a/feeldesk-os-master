@@ -1,0 +1,108 @@
+<include file="Login/header" />
+
+<div id='web' class="login-wrapper user-wrapper hidden">
+
+    <div class="header"><!--<img src="INDEX_IMG/login-logo.png" alt="">--></div>
+
+    <div class="user-main">
+
+        <div class="user-crumb"><img src="INDEX_IMG/feeldesk.png" alt=""></div>
+
+        <div class="user-form ">
+
+            <form action="" id="login-form">
+
+                <div class="user-form-item">
+
+                    <i class="iconfont icon-username"></i>
+
+                    <input type="text" name="data[username]" value="{$login.username}"
+                        placeholder="{:L('USERNAME_NOTE')}" id='username' autocomplete="off">
+
+                </div>
+
+                <div class="user-form-item">
+
+                    <i class="iconfont icon-password"></i>
+
+                    <input type="password" name="data[password]" value="{$login.password}"
+                        placeholder="{:L('ENTER_PASSWORD')}" id='password' autocomplete="off">
+
+                </div>
+
+
+                <div class="user-form-item">
+                    <div class="slide-verify" id="slide-verify"></div>
+                </div>
+
+                <div class="user-form-item layui-form">
+
+                    <input type="checkbox" name="data[remember]" lay-skin="primary" title="{:L('REMEMBER_PASSWORD')}"
+                        <eq name="login.remember" value="on">checked</eq>>
+
+                </div>
+
+                <div class="user-form-item"><a href="javascript:login()" class="submit-btn">{:L('LOGIN')}</a></div>
+
+                <div class="user-form-item clearfix">
+
+                    <div class="language relative">
+
+                        <a href="javascript:void(0);"
+                            onclick="setCookie('feel_think_languages', 'zh-cn', 365); window.location.reload();">简体中文</a>
+                    </div>
+
+                    <a href="javascript:void(0);"
+                    onclick="setCookie('feel_think_languages', 'en-us', 365); window.location.reload();">English</a>
+
+                </div>
+
+              
+        </div>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- 开源版本需保留版权信息，请谨慎删除；推荐购买商业授权，支持正版 -->
+<include file="Public/beian" />
+</div>
+
+<script>
+
+    $(function () {
+        $('#web').removeClass('hidden');
+
+        loadSlideVerify();
+    })
+
+    // 函数来解析URL查询字符串
+    function getQueryParam(param) {
+        var queryParams = new URLSearchParams(window.location.search);
+        return queryParams.get(param);
+    }
+
+    // 设置cookie的函数
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    // 在页面加载时检查URL参数并设置语言cookie
+    $(document).ready(function () {
+        var lang = getQueryParam('l');
+        if (lang) {
+            setCookie('feel_think_languages', lang, 365);
+        }else{
+            setCookie('feel_think_languages', 'zh-cn', 365);
+        }
+    });
+
+
+</script>
