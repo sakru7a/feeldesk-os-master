@@ -1,0 +1,18 @@
+{
+    "sourceFile": "README.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1735540193678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1735540193678,
+            "name": "Commit-0",
+            "content": "#### 开源版技术框架\n\n| <img width=75/>技术<img width=75/> | <img width=10/>版本<img width=75/> | <img width=75/>说明<img width=75/> |\n| :--------------------------------: | :--------------------------------: | :--------------------------------: |\n|                PHP                |               7.2.18               |              开发语言              |\n|               Nginx               |               1.20.2               |             Web服务器             |\n|               Mysql               |                5.7                |               数据库               |\n|               Redis               |                5.0                |             缓存数据库             |\n|              ThinkPHP              |               3.2.3               |              开发框架              |\n|               Layui               |                2.x                |              前端框架              |\n\n#### 开源项目部署文档\n\n[FeelDesk（OS）开源版安装部署文档](http://wiki.feelec.com.cn/zyplayer-doc-manage/doc-wiki#/page/share/view?space=f5d0a27926d64cafbe69190174cbef64&pageId=284)\n\n- $\\color{red}{按安装文档操作即可，已无数次成功安装，不成功请检查自己的安装步骤}$\n- $\\color{red}{由于项目较多，无法回应大家的安装类问题；}$\n\n#### 体验账号\n\n- 演示地址：https://dev.feeldesk.cn\n\n- 全功能版：18288880001 &emsp; 密码：123456\n\n#### 附：专业版框架\n\n| <img width=75/>技术<img width=75/> | <img width=10/>版本<img width=10/> | <img width=75/>说明<img width=75/> |\n| :--------------------------------: | :--------------------------------: | :--------------------------------: |\n|                PHP                |                7.4                |              开发语言              |\n|               Nginx               |                1.20                |             Web服务器             |\n|               Mysql               |                5.7                |               数据库               |\n|               Redis               |                6.0                |             缓存数据库             |\n|              ThinkPHP              |                6.x                |            后端核心框架            |\n|               Swoole               |                4.6                |            后端协程框架            |\n|                Vue                |                2.0                |            前端核心框架            |\n|             ElementUi             |                2.0                |             前端UI框架             |\n|               UniApp               |                3.x                |           移动端核心框架           |\n|               uView               |                1.x                |            移动端UI框架            |"
+        }
+    ]
+}
